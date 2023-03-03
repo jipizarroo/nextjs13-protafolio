@@ -1,15 +1,18 @@
-const delay = (time) => new Promise((resolve) => {
-    setTimeout(() => resolve(1), time)
-})
+import Link from "next/link";
+import { getAllPosts } from "../../lib/cms";
 
+export default async function Blog() {
+  const posts = await getAllPosts();
 
-const getData = async (slug) => {
-    const post = await delay(5000)
-    return {slug}
-}
-
-export default async function BlogPost ({params}) {
-    const { slug } = params
-    const post = await getData(slug)
-    return <div>Post</div>
+  return (
+    <div>
+      {posts.map((post) => (
+        <Link key={post.slug} href={`/blog/${post.slug}`}>
+          <div>
+            <h1>{post.title}</h1>
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
 }

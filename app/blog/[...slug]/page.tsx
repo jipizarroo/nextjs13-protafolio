@@ -1,10 +1,3 @@
-export default function getStaticParams() {
-    return [
-        {
-            slug: 'learn-to-code',
-        },
-        {
-            slug: 'angular-vs-react'
-        }
-    ]
+export default function BlogPost() {
+  return <div>post</div>;
 }
